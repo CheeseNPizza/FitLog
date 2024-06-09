@@ -5,6 +5,8 @@ const {
     getFits,
     getFit,
     createFit,
+    deleteFit,
+    updateFit
 } = require('../controllers/fitController')
 
 const router = express.Router()
@@ -19,13 +21,9 @@ router.get('/:id', getFit)
 router.post('/', createFit)
 
 //Delete an existing fit log
-router.delete('/:id', (req, res) => {
-    res.json({msg: 'Delete a fit log'})
-})
+router.delete('/:id', deleteFit)
 
 //Update an existing fit log
-router.patch('/:id', (req, res) => {
-    res.json({msg: 'Update a fit log'})
-})
+router.patch('/:id', updateFit)
 
 module.exports = router

@@ -38,11 +38,45 @@ const createFit = async (req, res) => {
 }
 
 //delete an exisitng fitlog
+const deleteFit = async (req, res) => {
+    const { id } = req.params
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({error: "No such fit log"})
+    }
+
+    const fit = await Fit.findByIdAndDelete({_id: id})
+
+    if (!fit) {
+        return res.status(404).json({error: 'No such fit log'})
+    }
+
+    res.status(200).json(fit)
+}
 
 //update an exisitng fitlog
+const updateFit = async (req, res) => {
+    const { id } = req.params
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({error: "No such fit log"})
+    }
+
+    const fit = await Fit.findByIdAndUpdate({_id: id}, {
+        ...req.body
+    })
+
+    if (!fit) {
+        return res.status(404).json({error: 'No such fit log'})
+    }
+
+    res.status(200).json(fit)
+}
 
 module.exports = {
     getFits,
     getFit,
-    createFit
+    createFit,
+    deleteFit,
+    updateFit
 }
