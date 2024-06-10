@@ -1,6 +1,7 @@
 require('dotenv').config()
 
 const express = require('express')
+const cors = require('cors')
 const mongoose = require('mongoose')
 const fitRoutes = require('./routes/fit')
 
@@ -14,6 +15,8 @@ app.use((req, res, next) => {
 })
 
 app.use('/api/fit', fitRoutes)
+
+app.use(cors({origin: "3000"}))
 
 //Connect to database
 mongoose.connect(process.env.MONGO_URL)
