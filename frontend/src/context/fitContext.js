@@ -12,6 +12,11 @@ export const fitReducer = (state, action) => {
             return {
                 fits: [action.payload, ...state.fits]
             }
+        case 'DELETE_FIT':
+            return {
+                fits: state.fits.filter((fit)=>
+                    fit._id !== action.payload._id)
+            }
         default:
             return state
     }
