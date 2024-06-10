@@ -1,4 +1,5 @@
 import { useFitContext } from "../hooks/useFitContext"
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
 const FitDetails = ({ fit }) => {
     const { dispatch } = useFitContext()
@@ -19,8 +20,8 @@ const FitDetails = ({ fit }) => {
             <h4> { fit.title } </h4>
             <p><strong>Load (kg): </strong>{fit.load}</p>
             <p><strong>Reps: </strong>{fit.reps}</p>
-            <p>{fit.createdAt}</p>
-            <span onClick={ handleClick }>Delete</span>
+            <p>{formatDistanceToNow(new Date(fit.createdAt), { addSuffix: true })}</p>
+            <span className = "material-symbols-outlined" onClick={ handleClick }>delete</span>
         </div>
     )
 }

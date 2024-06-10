@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useFitContext } from '../hooks/useFitContext'
 
 import FitDetails from '../components/FitDetails'
@@ -18,7 +18,7 @@ const Home = () => {
         }
 
         fetchFits()
-    }, [])
+    }, [dispatch])
 
     return (
         <div className="home">
