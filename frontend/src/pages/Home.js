@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
+import { useFitContext } from '../hooks/useFitContext'
 
 import FitDetails from '../components/FitDetails'
 import FitForm from "../components/FitForm"
 
 const Home = () => {
-    const [fits, setFits] = useState(null)
+    const {fits, dispatch} = useFitContext()
 
     useEffect(() => {
         const fetchFits = async () => {
@@ -12,7 +13,7 @@ const Home = () => {
             const json = await response.json()
 
             if (response.ok) {
-                setFits(json)
+                dispatch({type: 'SET_FIT', payload: json})
             }
         }
 

@@ -1,6 +1,8 @@
 import { useState } from "react"
+import { useFitContext } from "../hooks/useFitContext"
 
 const FitForm = () => {
+    const { dispatch } = useFitContext()
     const [title, setTitle] = useState('')
     const [load, setLoad] = useState('')
     const [reps, setReps] = useState('')
@@ -30,7 +32,8 @@ const FitForm = () => {
             setLoad('')
             setReps('')
             setError(null)
-            console.log('new fit log added')
+            console.log('new fit log added', json)
+            dispatch({type: 'CREATE_FIT', payload: json})
         }
     }
 
